@@ -81,7 +81,6 @@ function enviar_mensaje(event){
     contMsg.classList.add('success');
  
     }
-
    
 COMPONENTES.ELEMENTOS.FORMULARIO.addEventListener(
     'submit',
