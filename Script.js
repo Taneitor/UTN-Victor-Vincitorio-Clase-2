@@ -7,7 +7,7 @@ const registros = [
 
 // esto simula un dicionario Interesante
 const COMPONENTES = {
-    Elementos : {
+    ELEMENTOS : {
         LISTADO:  document.querySelector('#listado'),
         FORMULARIO: document.querySelector('#registro-formulario')
 
@@ -20,18 +20,18 @@ let registro_string_HTML = ''
 
 //esta parte de abajo muestra lo que se fue cargando
 function Renderizar_mensajes() {
-for(const registro of registros) {
-    const mensaje_string_HTML = `
+    for(const registro of registros) {
+
+        const mensaje_string_HTML = `
             <div>
                 <span>${registro.nombre}</span>
                 <span>${registro.edad}</span>
                 <hr/>
             </div>
         `
-    registro_string_HTML += mensaje_string_HTML 
-}
-
-COMPONENTES.LISTADO.innerHTML = registro_string_HTML
+        registro_string_HTML += mensaje_string_HTML 
+    }
+    COMPONENTES.ELEMENTOS.LISTADO.innerHTML = registro_string_HTML
 }
 // llamo la funcion de mostrar mensajes
 Renderizar_mensajes()
@@ -43,7 +43,7 @@ function enviar_mensaje(event){
     event.target
 
     const nuevo_nombre=event.target.nombre.value
-    const nueva_edad = parseInt(event.target.edad.value); // paso a numero 
+    const nueva_edad = parseInt(event.target.edad.value, 10); // paso a numero 
 
         // Validaciones
     if (!nuevo_nombre || isNaN(nueva_edad)) {
@@ -53,7 +53,7 @@ function enviar_mensaje(event){
         return;
     }
 
-    if (edad <= 18) {
+    if (nueva_edad <= 18) {
         console.error('La edad debe ser mayor a 18 años')
 //        alert('La edad debe ser mayor a 18 años');
         event.target.reset()
@@ -62,14 +62,14 @@ function enviar_mensaje(event){
 
     // Si todo está bien, procesamos el mensaje
     const nuevo_registro = {
-        nombre: nombre,
-        edad: edad,
+        nombre: nuevo_nombre,
+        edad: nueva_edad
     }
     registros.push(nuevo_registro)
     Renderizar_mensajes()
     }
    
-COMPONENTES.Elementos.FORMULARIO.addEventListener(
+COMPONENTES.ELEMENTOS.FORMULARIO.addEventListener(
     'submit',
     enviar_mensaje
 )
