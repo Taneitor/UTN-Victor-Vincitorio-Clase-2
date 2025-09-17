@@ -1,7 +1,7 @@
 const registros = [
     {
-        nombre: "Victor Vincitorio",
-        edad: 57,
+      nombre: "",
+      edad: "",
     }
 ]
 
@@ -13,8 +13,6 @@ const COMPONENTES = {
 
     }
 }
-//const listado_registros_contenedor_HTML = document.querySelector('#listado')
-//const registro_formulario_HTML = document.querySelector(#registro-formulario')
 
 let registro_string_HTML = ''
 
@@ -40,16 +38,16 @@ Renderizar_mensajes()
 //
 function enviar_mensaje(event){
     event.preventDefault()
-
     event.target
 
     const nuevo_nombre=event.target.nombre.value
     const nueva_edad = parseInt(event.target.edad.value, 10); // paso a numero 
 
-        // Validaciones
+//  Validaciones
     if (!nuevo_nombre || isNaN(nueva_edad)) {
 //       console.error('No puede haber campos vacíos o inválidos') 
         alert('No puede haber campos vacíos o inválidos');
+
         event.target.reset(); // Limpia el formulario
         return;
     }
@@ -57,6 +55,7 @@ function enviar_mensaje(event){
     if (nueva_edad <= 18) {
 //        console.error('La edad debe ser mayor a 18 años')
         alert('La edad debe ser mayor a 18 años');
+
         event.target.reset()
         return;
     }
