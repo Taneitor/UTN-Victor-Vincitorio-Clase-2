@@ -1,3 +1,4 @@
+//creo una variable constante de registro vacio
 const registros = [
     {
       nombre: "",
@@ -5,12 +6,12 @@ const registros = [
     }
 ]
 
-// esto simula un dicionario Interesante
+// esto simula un dicionario (Interesante!!)
 const COMPONENTES = {
     ELEMENTOS : {
-        LISTADO:  document.querySelector('#listado'),
-        FORMULARIO: document.querySelector('#registro-formulario')
-
+        LISTADO:    document.querySelector('#listado'),
+        FORMULARIO: document.querySelector('#registro-formulario'),
+        MENSAJE:    document.querySelector('#mensaje')
     }
 }
 
@@ -42,19 +43,24 @@ function enviar_mensaje(event){
 
     const nuevo_nombre=event.target.nombre.value
     const nueva_edad = parseInt(event.target.edad.value, 10); // paso a numero 
+    const contMsg    = COMPONENTES.ELEMENTOS.MENSAJE;
+
+  // limpio mensaje anterior
+  contMsg.textContent = '';
+  contMsg.classList.remove('error', 'success');
 
 //  Validaciones
     if (!nuevo_nombre || isNaN(nueva_edad)) {
-//       console.error('No puede haber campos vacíos o inválidos') 
-        alert('No puede haber campos vacíos o inválidos');
+        contMsg.textContent = 'No puede haber campos vacíos o inválidos';
+        contMsg.classList.add('error');
 
         event.target.reset(); // Limpia el formulario
         return;
     }
 
     if (nueva_edad <= 18) {
-//        console.error('La edad debe ser mayor a 18 años')
-        alert('La edad debe ser mayor a 18 años');
+        contMsg.textContent = 'La edad debe ser mayor a 18 años';
+        contMsg.classList.add('error');
 
         event.target.reset()
         return;
@@ -69,7 +75,13 @@ function enviar_mensaje(event){
     registros.push(nuevo_registro)
     Renderizar_mensajes()
     event.target.reset()
+
+    // Mensaje que todo esta en orden
+    contMsg.textContent = 'Registro agregado correctamente';
+    contMsg.classList.add('success');
+ 
     }
+
    
 COMPONENTES.ELEMENTOS.FORMULARIO.addEventListener(
     'submit',
